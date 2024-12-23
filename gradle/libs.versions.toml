@@ -1,0 +1,23 @@
+[versions]
+spring-boot = "3.4.0"
+spring-dependency-management = "1.1.6"
+lombok = "8.11"
+
+[plugins]
+java = { id = "java" }
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+spring-deps = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management" }
+lombok = { id = "io.freefair.lombok", version.ref = "lombok" }
+
+[libraries]
+springboot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web" }
+springboot-starter-jpa = { group = "org.springframework.boot", name = "spring-boot-starter-data-jpa" }
+springboot-starter-actuator = { group = "org.springframework.boot", name = "spring-boot-starter-actuator" }
+springboot-devtools = { group = "org.springframework.boot", name = "spring-boot-devtools" }
+springboot-docker-compose = { group = "org.springframework.boot", name = "spring-boot-docker-compose" }
+postgresql = { group = "org.postgresql", name = "postgresql" }
+springboot-starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test" }
+junit-platform-launcher = { group = "org.junit.platform", name = "junit-platform-launcher" }
+
+[bundles]
+springboot-development = ["springboot-devtools", "springboot-docker-compose"]
