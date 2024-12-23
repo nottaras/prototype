@@ -1,5 +1,7 @@
 # Prototype
 
+[![CI](https://github.com/nottaras/prototype/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/nottaras/prototype/actions/workflows/ci.yml)
+
 ## Environment Configuration
 
 The project requires a .env file for local development. This file stores environment-specific variables, such as
