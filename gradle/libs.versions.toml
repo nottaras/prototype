@@ -2,6 +2,7 @@
 spring-boot = "3.4.0"
 spring-dependency-management = "1.1.6"
 lombok = "8.11"
+openapi = "2.7.0"
 
 [plugins]
 java = { id = "java" }
@@ -12,7 +13,7 @@ lombok = { id = "io.freefair.lombok", version.ref = "lombok" }
 [libraries]
 springboot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web" }
 springboot-starter-jpa = { group = "org.springframework.boot", name = "spring-boot-starter-data-jpa" }
-springboot-starter-actuator = { group = "org.springframework.boot", name = "spring-boot-starter-actuator" }
+openapi = { group = "org.springdoc", name = "springdoc-openapi-starter-webmvc-ui", version.ref = "openapi" }
 springboot-devtools = { group = "org.springframework.boot", name = "spring-boot-devtools" }
 springboot-docker-compose = { group = "org.springframework.boot", name = "spring-boot-docker-compose" }
 postgresql = { group = "org.postgresql", name = "postgresql" }
