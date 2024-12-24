@@ -18,6 +18,8 @@ flyway = { id = "org.flywaydb.flyway", version.ref = "flyway" }
 [libraries]
 springboot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web" }
 springboot-starter-jpa = { group = "org.springframework.boot", name = "spring-boot-starter-data-jpa" }
+springboot-starter-security = { group = "org.springframework.boot", name = "spring-boot-starter-security" }
+springboot-starter-oauth2-resource-server = { group = "org.springframework.boot", name = "spring-boot-starter-oauth2-resource-server" }
 openapi = { group = "org.springdoc", name = "springdoc-openapi-starter-webmvc-ui", version.ref = "openapi" }
 mapstruct = { group = "org.mapstruct", name = "mapstruct", version.ref = "mapstruct" }
 mapstruct-processor = { group = "org.mapstruct", name = "mapstruct-processor", version.ref = "mapstruct" }
@@ -26,10 +28,12 @@ flyway-postgresql = { group = "org.flywaydb", name = "flyway-database-postgresql
 
 springboot-devtools = { group = "org.springframework.boot", name = "spring-boot-devtools" }
 springboot-docker-compose = { group = "org.springframework.boot", name = "spring-boot-docker-compose" }
+spring-boot-configuration-processor = { group = "org.springframework.boot", name = "spring-boot-configuration-processor" }
 postgresql = { group = "org.postgresql", name = "postgresql" }
 springboot-starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test" }
+spring-security-test = { group = "org.springframework.security", name = "spring-security-test" }
 junit-platform-launcher = { group = "org.junit.platform", name = "junit-platform-launcher" }
 
 [bundles]
-springboot-development = ["springboot-devtools", "springboot-docker-compose"]
+springboot-development = ["springboot-devtools", "springboot-docker-compose", "spring-boot-configuration-processor"]
 flyway = ["flyway-core", "flyway-postgresql"]

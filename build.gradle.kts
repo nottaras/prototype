@@ -22,6 +22,8 @@ java {
 dependencies {
     implementation(libs.springboot.starter.web)
     implementation(libs.springboot.starter.jpa)
+    implementation(libs.springboot.starter.security)
+    implementation(libs.springboot.starter.oauth2.resource.server)
     implementation(libs.openapi)
     implementation(libs.mapstruct)
     implementation(libs.bundles.flyway)
@@ -32,6 +34,7 @@ dependencies {
 
     runtimeOnly(libs.postgresql)
 
+    testImplementation(libs.spring.security.test)
     testImplementation(libs.springboot.starter.test)
     testRuntimeOnly(libs.junit.platform.launcher)
 }
