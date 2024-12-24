@@ -21,7 +21,7 @@ java {
 dependencies {
     implementation(libs.springboot.starter.web)
     implementation(libs.springboot.starter.jpa)
-    implementation(libs.springboot.starter.actuator)
+    implementation(libs.openapi)
 
     developmentOnly(libs.bundles.springboot.development)
 

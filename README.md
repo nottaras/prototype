@@ -29,3 +29,9 @@ ADMINER_PORT=8082
 ```
 
 3. Modify the values as needed for your local setup.
+
+## Local Development Resources
+
+- [Application](http://localhost:8080) - Main application.
+- [Swagger](http://localhost:8080/swagger-ui/index.html#) - API documentation for testing and exploration.
+- [Adminer](http://localhost:8082) - Database management interface.
