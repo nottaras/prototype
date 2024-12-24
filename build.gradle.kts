@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.spring.boot)
     alias(libs.plugins.spring.deps)
     alias(libs.plugins.lombok)
+    alias(libs.plugins.flyway)
 }
 
 group = "com.nottaras"
@@ -22,6 +23,10 @@ dependencies {
     implementation(libs.springboot.starter.web)
     implementation(libs.springboot.starter.jpa)
     implementation(libs.openapi)
+    implementation(libs.mapstruct)
+    implementation(libs.bundles.flyway)
+
+    annotationProcessor(libs.mapstruct.processor)
 
     developmentOnly(libs.bundles.springboot.development)
 

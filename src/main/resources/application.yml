@@ -13,3 +13,4 @@ spring:
     properties:
       hibernate:
         format_sql: ${SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL}
+        ddl-auto: validate
