@@ -3,17 +3,27 @@ spring-boot = "3.4.0"
 spring-dependency-management = "1.1.6"
 lombok = "8.11"
 openapi = "2.7.0"
+mapstruct = "1.6.3"
+flyway = "10.13.0"
+
 
 [plugins]
 java = { id = "java" }
 spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
 spring-deps = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management" }
 lombok = { id = "io.freefair.lombok", version.ref = "lombok" }
+flyway = { id = "org.flywaydb.flyway", version.ref = "flyway" }
+
 
 [libraries]
 springboot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web" }
 springboot-starter-jpa = { group = "org.springframework.boot", name = "spring-boot-starter-data-jpa" }
 openapi = { group = "org.springdoc", name = "springdoc-openapi-starter-webmvc-ui", version.ref = "openapi" }
+mapstruct = { group = "org.mapstruct", name = "mapstruct", version.ref = "mapstruct" }
+mapstruct-processor = { group = "org.mapstruct", name = "mapstruct-processor", version.ref = "mapstruct" }
+flyway-core = { group = "org.flywaydb", name = "flyway-core", version.ref = "flyway" }
+flyway-postgresql = { group = "org.flywaydb", name = "flyway-database-postgresql", version.ref = "flyway" }
+
 springboot-devtools = { group = "org.springframework.boot", name = "spring-boot-devtools" }
 springboot-docker-compose = { group = "org.springframework.boot", name = "spring-boot-docker-compose" }
 postgresql = { group = "org.postgresql", name = "postgresql" }
@@ -22,3 +32,4 @@ junit-platform-launcher = { group = "org.junit.platform", name = "junit-platform
 
 [bundles]
 springboot-development = ["springboot-devtools", "springboot-docker-compose"]
+flyway = ["flyway-core", "flyway-postgresql"]
