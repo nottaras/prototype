@@ -1,42 +1,78 @@
 services:
-  app:
-    image: app:latest
-    build:
-      dockerfile: Dockerfile
-    depends_on:
-      - postgres
-    ports:
-      - "${APP_SERVER_PORT}:8080"
-    profiles:
-      - prod
-    environment:
-      - SPRING_APPLICATION_NAME=${SPRING_APPLICATION_NAME}
-      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
-      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
-      - SPRING_JPA_SHOW_SQL=${SPRING_JPA_SHOW_SQL}
-      - SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL=${SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL}
-      - APP_SERVER_PORT=${APP_SERVER_PORT}
-      - POSTGRES_HOST=${POSTGRES_HOST}
-      - POSTGRES_PORT=${POSTGRES_PORT}
-      - POSTGRES_DB=${POSTGRES_DB}
 
   postgres:
     image: postgres
     restart: always
     ports:
-      - "${POSTGRES_PORT}:5432"
+      - ${POSTGRES_PORT}:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${SPRING_DATASOURCE_USERNAME} -d ${SPRING_APPLICATION_NAME}" ]
+      interval: 1s
+      retries: 30
     profiles:
       - dev
       - prod
     environment:
       - POSTGRES_USER=${SPRING_DATASOURCE_USERNAME}
       - POSTGRES_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
 
   adminer:
     image: adminer
     restart: always
     ports:
-      - "${ADMINER_PORT}:8080"
+      - ${ADMINER_PORT}:8080
     profiles:
       - dev
+
+  keycloak:
+    image: keycloak/keycloak
+    restart: always
+    ports:
+      - ${KEYCLOAK_PORT}:8080
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./src/main/resources/keycloak/import:/opt/keycloak/data/import
+    command:
+      - "start-dev"
+      - "import-realm"
+    profiles:
+      - resource
+      - all
+    environment:
+      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+      KC_DB: ${KC_DB}
+      KC_DB_URL: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}?currentSchema=${KC_DB_SCHEMA}
+      KC_DB_USERNAME: ${KC_DB_USERNAME}
+      KC_DB_PASSWORD: ${KC_DB_PASSWORD}
+
+  app:
+    image: app:latest
+    build:
+      dockerfile: Dockerfile
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - ${APP_SERVER_PORT}:8080
+    profiles:
+      - prod
+    environment:
+      - APP_SERVER_PORT=${APP_SERVER_PORT}
+      - SPRING_APPLICATION_NAME=${SPRING_APPLICATION_NAME}
+      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+      - SPRING_JPA_SHOW_SQL=${SPRING_JPA_SHOW_SQL}
+      - SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL=${SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - KEYCLOAK_CLIENT_ID=${KEYCLOAK_CLIENT_ID}
+      - KEYCLOAK_PORT=${KEYCLOAK_PORT}
+
+volumes:
+  postgres_data:

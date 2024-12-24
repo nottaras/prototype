@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -27,10 +26,9 @@ public class EntryController {
     private final EntryService entryService;
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<EntryDto> createEntry(@RequestBody UpsertEntryDto createDto) {
         var createdEntry = entryService.createEntry(createDto);
-        return ResponseEntity.ok(createdEntry);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdEntry);
     }
 
     @GetMapping
