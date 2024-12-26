@@ -25,3 +25,9 @@ app:
   security:
     jwt:
       client-id: ${KEYCLOAK_CLIENT_ID}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: [ "prometheus" ]

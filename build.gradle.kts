@@ -27,6 +27,7 @@ dependencies {
     implementation(libs.openapi)
     implementation(libs.mapstruct)
     implementation(libs.bundles.flyway)
+    implementation(libs.micrometer)
 
     annotationProcessor(libs.mapstruct.processor)
 
