@@ -14,6 +14,14 @@ spring:
       hibernate:
         format_sql: ${SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL}
         ddl-auto: validate
+  data:
+    mongodb:
+      host: ${MONGO_HOST}
+      port: ${MONGO_PORT}
+      database: ${MONGO_DATABASE}
+      username: ${MONGO_USERNAME}
+      password: ${MONGO_PASSWORD}
+      authentication-database: admin
   security:
     oauth2:
       resourceserver:
@@ -25,6 +33,10 @@ app:
   security:
     jwt:
       client-id: ${KEYCLOAK_CLIENT_ID}
+  file:
+    upload:
+      max-size: ${FILE_UPLOAD_MAX_SIZE}
+      allowed-types: ${FILE_UPLOAD_ALLOWED_TYPES}
 
 management:
   endpoints:

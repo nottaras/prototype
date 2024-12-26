@@ -20,12 +20,13 @@ springboot-starter-web = { group = "org.springframework.boot", name = "spring-bo
 springboot-starter-jpa = { group = "org.springframework.boot", name = "spring-boot-starter-data-jpa" }
 springboot-starter-security = { group = "org.springframework.boot", name = "spring-boot-starter-security" }
 springboot-starter-oauth2-resource-server = { group = "org.springframework.boot", name = "spring-boot-starter-oauth2-resource-server" }
+springboot-starter-mongodb = { group = "org.springframework.boot", name = "spring-boot-starter-data-mongodb" }
+springboot-starter-validation = { group = "org.springframework.boot", name = "spring-boot-starter-validation" }
 openapi = { group = "org.springdoc", name = "springdoc-openapi-starter-webmvc-ui", version.ref = "openapi" }
 mapstruct = { group = "org.mapstruct", name = "mapstruct", version.ref = "mapstruct" }
 mapstruct-processor = { group = "org.mapstruct", name = "mapstruct-processor", version.ref = "mapstruct" }
 flyway-core = { group = "org.flywaydb", name = "flyway-core", version.ref = "flyway" }
 flyway-postgresql = { group = "org.flywaydb", name = "flyway-database-postgresql", version.ref = "flyway" }
-
 micrometer = { group = "io.micrometer", name = "micrometer-registry-prometheus" }
 springboot-starter-actuator = { group = "org.springframework.boot", name = "spring-boot-starter-actuator" }
 springboot-devtools = { group = "org.springframework.boot", name = "spring-boot-devtools" }

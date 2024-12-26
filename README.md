@@ -38,6 +38,15 @@ KEYCLOAK_CLIENT_ID=prototype
 
 PROMETHEUS_PORT=9090
 GRAFANA_PORT=3000
+
+MONGO_PORT=27017
+MONGO_EXPRESS_PORT=8083
+MONGO_HOST=mongo
+MONGO_DATABASE=prototype
+MONGO_USERNAME=mongo
+MONGO_PASSWORD=mongo
+FILE_UPLOAD_MAX_SIZE=15728640
+FILE_UPLOAD_ALLOWED_TYPES=image/jpeg,image/png
 ```
 
 3. Modify the values as needed for your local setup.
@@ -50,6 +59,8 @@ GRAFANA_PORT=3000
 - [Keycloak](http://localhost:8082) - Admin panel for authentication and authorization.
 - [Prometheus](http://localhost:9090) - Metrics and monitoring system.
 - [Grafana](http://localhost:3000) - Visualization and dashboarding for metrics.
+- [MongoDB](http://localhost:27017) - NoSQL database.
+- [Mongo Express](http://localhost:8083) - Web-based MongoDB administration interface.
 
 ## Obtaining the Access Token
 

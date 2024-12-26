@@ -24,6 +24,8 @@ dependencies {
     implementation(libs.springboot.starter.jpa)
     implementation(libs.springboot.starter.security)
     implementation(libs.springboot.starter.oauth2.resource.server)
+    implementation(libs.springboot.starter.mongodb)
+    implementation(libs.springboot.starter.validation)
     implementation(libs.openapi)
     implementation(libs.mapstruct)
     implementation(libs.bundles.flyway)
