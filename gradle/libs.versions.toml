@@ -26,6 +26,8 @@ mapstruct-processor = { group = "org.mapstruct", name = "mapstruct-processor", v
 flyway-core = { group = "org.flywaydb", name = "flyway-core", version.ref = "flyway" }
 flyway-postgresql = { group = "org.flywaydb", name = "flyway-database-postgresql", version.ref = "flyway" }
 
+micrometer = { group = "io.micrometer", name = "micrometer-registry-prometheus" }
+springboot-starter-actuator = { group = "org.springframework.boot", name = "spring-boot-starter-actuator" }
 springboot-devtools = { group = "org.springframework.boot", name = "spring-boot-devtools" }
 springboot-docker-compose = { group = "org.springframework.boot", name = "spring-boot-docker-compose" }
 spring-boot-configuration-processor = { group = "org.springframework.boot", name = "spring-boot-configuration-processor" }
@@ -35,5 +37,5 @@ spring-security-test = { group = "org.springframework.security", name = "spring-
 junit-platform-launcher = { group = "org.junit.platform", name = "junit-platform-launcher" }
 
 [bundles]
-springboot-development = ["springboot-devtools", "springboot-docker-compose", "spring-boot-configuration-processor"]
+springboot-development = ["springboot-starter-actuator", "springboot-devtools", "springboot-docker-compose", "spring-boot-configuration-processor"]
 flyway = ["flyway-core", "flyway-postgresql"]

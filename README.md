@@ -35,6 +35,9 @@ KC_DB_SCHEMA=keycloak
 KC_DB_USERNAME=keycloak
 KC_DB_PASSWORD=keycloak
 KEYCLOAK_CLIENT_ID=prototype
+
+PROMETHEUS_PORT=9090
+GRAFANA_PORT=3000
 ```
 
 3. Modify the values as needed for your local setup.
@@ -45,6 +48,8 @@ KEYCLOAK_CLIENT_ID=prototype
 - [Swagger](http://localhost:8080/swagger-ui/index.html#) - API documentation for testing and exploration.
 - [Adminer](http://localhost:8081) - Database management interface.
 - [Keycloak](http://localhost:8082) - Admin panel for authentication and authorization.
+- [Prometheus](http://localhost:9090) - Metrics and monitoring system.
+- [Grafana](http://localhost:3000) - Visualization and dashboarding for metrics.
 
 ## Obtaining the Access Token
 

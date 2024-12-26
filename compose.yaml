@@ -7,20 +7,19 @@ services:
       - ${POSTGRES_PORT}:5432
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U ${SPRING_DATASOURCE_USERNAME} -d ${SPRING_APPLICATION_NAME}" ]
-      interval: 1s
-      retries: 30
     profiles:
       - dev
       - prod
     environment:
       - POSTGRES_USER=${SPRING_DATASOURCE_USERNAME}
       - POSTGRES_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
 
   adminer:
     image: adminer
     restart: always
+    depends_on:
+      - postgres
     ports:
       - ${ADMINER_PORT}:8080
     profiles:
@@ -32,16 +31,15 @@ services:
     ports:
       - ${KEYCLOAK_PORT}:8080
     depends_on:
-      postgres:
-        condition: service_healthy
+      - app
     volumes:
       - ./src/main/resources/keycloak/import:/opt/keycloak/data/import
     command:
       - "start-dev"
-      - "import-realm"
+      - "--import-realm"
     profiles:
-      - resource
-      - all
+      - dev
+      - prod
     environment:
       KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN}
       KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
@@ -50,13 +48,34 @@ services:
       KC_DB_USERNAME: ${KC_DB_USERNAME}
       KC_DB_PASSWORD: ${KC_DB_PASSWORD}
 
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - ${PROMETHEUS_PORT}:9090
+    volumes:
+      - ./src/main/resources/monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    profiles:
+      - prod
+
+  grafana:
+    image: grafana/grafana
+    depends_on:
+      - prometheus
+    ports:
+      - ${GRAFANA_PORT}:3000
+    volumes:
+      - ./src/main/resources/monitoring/grafana/dashboard.yml:/etc/grafana/provisioning/dashboards/main.yml
+      - ./src/main/resources/monitoring/grafana/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml
+      - ./src/main/resources/monitoring/grafana/dashboards:/var/lib/grafana/dashboards
+    profiles:
+      - prod
+
   app:
     image: app:latest
     build:
       dockerfile: Dockerfile
     depends_on:
-      postgres:
-        condition: service_healthy
+      - postgres
     ports:
       - ${APP_SERVER_PORT}:8080
     profiles:
