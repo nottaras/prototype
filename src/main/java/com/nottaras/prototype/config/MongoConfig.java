@@ -10,11 +10,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MongoConfig {
 
-    @Value("${MONGO_DATABASE}")
-    private String mongoDatabase;
+    @Value("${MONGO_DB}")
+    private String mongoDb;
 
     @Bean
     public GridFSBucket gridFSBucket(MongoClient mongoClient) {
-        return GridFSBuckets.create(mongoClient.getDatabase(mongoDatabase));
+        return GridFSBuckets.create(mongoClient.getDatabase(mongoDb));
     }
 }
