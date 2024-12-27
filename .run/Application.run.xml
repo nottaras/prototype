@@ -2,6 +2,7 @@
   <configuration default="false" name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
     <envs>
       <env name="POSTGRES_HOST" value="localhost" />
+      <env name="MONGO_HOST" value="localhost" />
     </envs>
     <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
     <module name="prototype.main" />
