@@ -1,6 +1,5 @@
 package com.nottaras.prototype.converter;
 
-import com.nottaras.prototype.config.prop.JwtProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.NonNull;
@@ -24,10 +23,8 @@ public class CustomJwtAuthConverter implements Converter<Jwt, AbstractAuthentica
 
     private static final String ROLES_CLAIM = "roles";
     private static final String PREFERRED_USERNAME_CLAIM = "preferred_username";
-    private static final String RESOURCE_ACCESS_CLAIM = "resource_access";
+    private static final String REALM_ACCESS_CLAIM = "realm_access";
     private static final String ROLE_PREFIX = "ROLE_";
-
-    private final JwtProperties jwtProperties;
 
     @Override
     public final AbstractAuthenticationToken convert(@NonNull Jwt jwt) {
@@ -38,7 +35,7 @@ public class CustomJwtAuthConverter implements Converter<Jwt, AbstractAuthentica
     }
 
     private Collection<GrantedAuthority> extractAuthorities(Jwt jwt) {
-        var roles = extractRolesFromResourceAccess(jwt);
+        var roles = extractRolesFromRealmAccess(jwt);
 
         return roles.stream()
                 .map(role -> ROLE_PREFIX + role)
@@ -47,12 +44,11 @@ public class CustomJwtAuthConverter implements Converter<Jwt, AbstractAuthentica
     }
 
     @SuppressWarnings("unchecked")
-    private List<String> extractRolesFromResourceAccess(Jwt jwt) {
-        var resourceAccess = Optional.ofNullable(jwt.getClaim(RESOURCE_ACCESS_CLAIM))
+    private List<String> extractRolesFromRealmAccess(Jwt jwt) {
+        var realmAccess = Optional.ofNullable(jwt.getClaim(REALM_ACCESS_CLAIM))
                 .map(Map.class::cast)
                 .orElse(Map.of());
-        var clientAccess = (Map<String, Object>) resourceAccess.getOrDefault(jwtProperties.clientId(), Map.of());
 
-        return (List<String>) clientAccess.getOrDefault(ROLES_CLAIM, List.of());
+        return (List<String>) realmAccess.getOrDefault(ROLES_CLAIM, List.of());
     }
 }
