@@ -27,7 +27,7 @@ public class SecurityConfig {
                         )
                         .permitAll()
                         .anyRequest()
-                        .hasRole("USER")
+                        .hasRole("user")
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(jwtConfig -> jwtConfig.jwtAuthenticationConverter(customJwtAuthConverter)))

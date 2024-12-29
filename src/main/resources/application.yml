@@ -34,9 +34,6 @@ spring:
           jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
 
 app:
-  security:
-    jwt:
-      client-id: ${KEYCLOAK_CLIENT_ID}
   file:
     upload:
       max-size: ${FILE_UPLOAD_MAX_SIZE}
