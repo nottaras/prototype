@@ -79,7 +79,7 @@ get a token via `username` and `password`. Use the following `curl` command:
 curl --location 'http://localhost:8082/realms/prototype/protocol/openid-connect/token' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'grant_type=password' \
---data-urlencode 'client_id=prototype' \
---data-urlencode 'username=foo.bar@gmail.com' \
+--data-urlencode 'client_id=prototype-app' \
+--data-urlencode 'username=user@gmail.com' \
 --data-urlencode 'password=123456'
 ```
