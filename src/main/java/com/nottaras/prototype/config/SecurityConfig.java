@@ -1,6 +1,6 @@
 package com.nottaras.prototype.config;
 
-import com.nottaras.prototype.converter.CustomJwtAuthConverter;
+import com.nottaras.prototype.auth.CustomJwtAuthConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

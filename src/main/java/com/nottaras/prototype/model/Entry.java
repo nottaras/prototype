@@ -12,6 +12,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Data
 @Entity
@@ -28,4 +29,7 @@ public class Entry {
 
     @Column(name = "date", nullable = false)
     private LocalDate date;
+
+    @Column(name = "user_id", nullable = false)
+    private UUID userId;
 }
