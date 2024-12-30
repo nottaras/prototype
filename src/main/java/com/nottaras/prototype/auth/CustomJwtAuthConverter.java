@@ -1,4 +1,4 @@
-package com.nottaras.prototype.converter;
+package com.nottaras.prototype.auth;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.converter.Converter;
@@ -22,14 +22,14 @@ import static java.util.stream.Collectors.toList;
 public class CustomJwtAuthConverter implements Converter<Jwt, AbstractAuthenticationToken> {
 
     private static final String ROLES_CLAIM = "roles";
-    private static final String PREFERRED_USERNAME_CLAIM = "preferred_username";
+    private static final String SUB_CLAIM = "sub";
     private static final String REALM_ACCESS_CLAIM = "realm_access";
     private static final String ROLE_PREFIX = "ROLE_";
 
     @Override
     public final AbstractAuthenticationToken convert(@NonNull Jwt jwt) {
         var authorities = extractAuthorities(jwt);
-        var principalClaim = jwt.getClaimAsString(PREFERRED_USERNAME_CLAIM);
+        var principalClaim = jwt.getClaimAsString(SUB_CLAIM);
 
         return new JwtAuthenticationToken(jwt, authorities, principalClaim);
     }

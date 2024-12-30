@@ -81,5 +81,5 @@ curl --location 'http://localhost:8082/realms/prototype/protocol/openid-connect/
 --data-urlencode 'grant_type=password' \
 --data-urlencode 'client_id=prototype-app' \
 --data-urlencode 'username=user@gmail.com' \
---data-urlencode 'password=123456'
+--data-urlencode 'password=123456' | jq -r '.access_token'
 ```
