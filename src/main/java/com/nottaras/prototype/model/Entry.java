@@ -23,12 +23,15 @@ public class Entry {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "date", nullable = false)
+    private LocalDate date;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "mood", nullable = false)
     private Mood mood;
 
-    @Column(name = "date", nullable = false)
-    private LocalDate date;
+    @Column(name = "notes", nullable = false)
+    private String notes;
 
     @Column(name = "user_id", nullable = false)
     private UUID userId;

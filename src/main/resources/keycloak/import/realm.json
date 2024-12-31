@@ -443,7 +443,7 @@
       "attributes": {
       },
       "realmRoles": [
-        "admin"
+        "ADMIN"
       ],
       "clientRoles": {
       }
@@ -456,7 +456,7 @@
       "attributes": {
       },
       "realmRoles": [
-        "user"
+        "USER"
       ],
       "clientRoles": {
       }

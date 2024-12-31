@@ -1,5 +1,6 @@
 package com.nottaras.prototype.controller;
 
+import com.nottaras.prototype.auth.HasRoleUser;
 import com.nottaras.prototype.dto.EntryDto;
 import com.nottaras.prototype.dto.UpsertEntryDto;
 import com.nottaras.prototype.service.EntryService;
@@ -21,6 +22,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
+@HasRoleUser
 @RequestMapping("/api/v1/moods")
 @RequiredArgsConstructor
 public class EntryController {
