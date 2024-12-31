@@ -21,18 +21,18 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(auth -> auth.requestMatchers(
+        http
+                .authorizeHttpRequests(
+                        authConfig -> authConfig.requestMatchers(
                                 "/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**", "/actuator/**"
-                        )
-                        .permitAll()
-                        .anyRequest()
-                        .hasRole("user")
+                                ).permitAll()
+                                .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(jwtConfig -> jwtConfig.jwtAuthenticationConverter(customJwtAuthConverter)))
                 .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }
 }

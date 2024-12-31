@@ -4,5 +4,5 @@ import com.nottaras.prototype.enums.Mood;
 
 import java.time.LocalDate;
 
-public record UpsertEntryDto(Mood mood, LocalDate date) {
+public record UpsertEntryDto(Mood mood, LocalDate date, String notes) {
 }
