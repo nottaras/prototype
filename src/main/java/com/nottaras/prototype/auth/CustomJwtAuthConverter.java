@@ -38,16 +38,16 @@ public class CustomJwtAuthConverter implements Converter<Jwt, AbstractAuthentica
         var roles = extractRolesFromRealmAccess(jwt);
 
         return roles.stream()
-                .map(role -> ROLE_PREFIX + role)
-                .map(SimpleGrantedAuthority::new)
-                .collect(toList());
+            .map(role -> ROLE_PREFIX + role)
+            .map(SimpleGrantedAuthority::new)
+            .collect(toList());
     }
 
     @SuppressWarnings("unchecked")
     private List<String> extractRolesFromRealmAccess(Jwt jwt) {
         var realmAccess = Optional.ofNullable(jwt.getClaim(REALM_ACCESS_CLAIM))
-                .map(Map.class::cast)
-                .orElse(Map.of());
+            .map(Map.class::cast)
+            .orElse(Map.of());
 
         return (List<String>) realmAccess.getOrDefault(ROLES_CLAIM, List.of());
     }

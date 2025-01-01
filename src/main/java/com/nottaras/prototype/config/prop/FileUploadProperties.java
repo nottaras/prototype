@@ -10,7 +10,7 @@ import java.util.List;
 @Validated
 @ConfigurationProperties(prefix = "app.file.upload")
 public record FileUploadProperties(
-        @NotNull Long maxSize,
-        @NotEmpty List<String> allowedTypes
+    @NotNull Long maxSize,
+    @NotEmpty List<String> allowedTypes
 ) {
 }
