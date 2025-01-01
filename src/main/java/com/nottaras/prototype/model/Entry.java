@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -17,7 +18,8 @@ import java.util.UUID;
 @Data
 @Entity
 @Table(name = "entries")
-public class Entry {
+@EqualsAndHashCode
+public class Entry extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
