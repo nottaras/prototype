@@ -17,11 +17,11 @@ public class OpenApiConfig {
     @Bean
     OpenAPI openApi() {
         return new OpenAPI()
-                .components(new Components()
-                        .addSecuritySchemes(SECURITY_SCHEME_NAME, new SecurityScheme()
-                                .type(SecurityScheme.Type.HTTP)
-                                .scheme(SCHEME_TYPE)
-                                .bearerFormat(BEARER_FORMAT)))
-                .addSecurityItem(new SecurityRequirement().addList(SECURITY_SCHEME_NAME));
+            .components(new Components()
+                .addSecuritySchemes(SECURITY_SCHEME_NAME, new SecurityScheme()
+                    .type(SecurityScheme.Type.HTTP)
+                    .scheme(SCHEME_TYPE)
+                    .bearerFormat(BEARER_FORMAT)))
+            .addSecurityItem(new SecurityRequirement().addList(SECURITY_SCHEME_NAME));
     }
 }

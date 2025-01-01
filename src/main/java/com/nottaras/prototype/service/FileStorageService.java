@@ -66,8 +66,8 @@ public class FileStorageService {
 
     private String generateFileName(MultipartFile file) {
         return (file.getOriginalFilename() != null && !file.getOriginalFilename().isBlank())
-                ? file.getOriginalFilename()
-                : new ObjectId().toHexString();
+            ? file.getOriginalFilename()
+            : new ObjectId().toHexString();
     }
 
     private GridFSFile getFileByObjectId(ObjectId objectId) {

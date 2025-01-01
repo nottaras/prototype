@@ -30,14 +30,14 @@ public class EntryService {
     @Transactional(readOnly = true)
     public List<EntryDto> getEntries(UUID userId) {
         return entryRepository.findAllByUserId(userId).stream()
-                .map(entryMapper::map)
-                .toList();
+            .map(entryMapper::map)
+            .toList();
     }
 
     @Transactional(readOnly = true)
     public Optional<EntryDto> getEntryById(Long id, UUID userId) {
         return entryRepository.findByIdAndUserId(id, userId)
-                .map(entryMapper::map);
+            .map(entryMapper::map);
     }
 
     @Transactional
