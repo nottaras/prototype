@@ -5,10 +5,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.RollbackOn;
 
 @SpringBootApplication
 @EnableJpaAuditing
-@EnableTransactionManagement
+@EnableTransactionManagement(rollbackOn = RollbackOn.ALL_EXCEPTIONS)
 @ConfigurationPropertiesScan("com.nottaras.prototype.config.prop")
 public class PrototypeApplication {
 

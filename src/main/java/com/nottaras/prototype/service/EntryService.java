@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -35,14 +34,16 @@ public class EntryService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<EntryDto> getEntryById(Long id, UUID userId) {
+    public EntryDto getEntryById(Long id, UUID userId) {
         return entryRepository.findByIdAndUserId(id, userId)
-            .map(entryMapper::map);
+            .map(entryMapper::map)
+            .orElseThrow(EntityNotFoundException::new);
     }
 
     @Transactional
     public EntryDto updateEntry(Long id, UpsertEntryDto createDto, UUID userId) {
-        var existingEntry = entryRepository.findByIdAndUserId(id, userId).orElseThrow(EntityNotFoundException::new);
+        var existingEntry = entryRepository.findByIdAndUserId(id, userId)
+            .orElseThrow(EntityNotFoundException::new);
         entryMapper.update(createDto, existingEntry);
 
         return entryMapper.map(entryRepository.save(existingEntry));

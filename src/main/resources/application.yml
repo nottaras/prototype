@@ -1,5 +1,8 @@
 server:
   port: ${APP_PORT}
+  error:
+    include-message: always
+    include-stacktrace: on_param
 
 spring:
   application:
