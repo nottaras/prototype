@@ -5,6 +5,7 @@ lombok = "8.11"
 openapi = "2.7.0"
 mapstruct = "1.6.3"
 flyway = "10.13.0"
+query-dsl = "5.1.0"
 
 
 [plugins]
@@ -27,6 +28,9 @@ mapstruct = { group = "org.mapstruct", name = "mapstruct", version.ref = "mapstr
 mapstruct-processor = { group = "org.mapstruct", name = "mapstruct-processor", version.ref = "mapstruct" }
 flyway-core = { group = "org.flywaydb", name = "flyway-core", version.ref = "flyway" }
 flyway-postgresql = { group = "org.flywaydb", name = "flyway-database-postgresql", version.ref = "flyway" }
+querydsl-jpa = { group = "com.querydsl", name = "querydsl-jpa", version.ref = "query-dsl" }
+querydsl-apt = { group = "com.querydsl", name = "querydsl-apt", version.ref = "query-dsl" }
+jakarta-persisence-api = { group = "jakarta.persistence", name = "jakarta.persistence-api" }
 micrometer = { group = "io.micrometer", name = "micrometer-registry-prometheus" }
 springboot-starter-actuator = { group = "org.springframework.boot", name = "spring-boot-starter-actuator" }
 springboot-devtools = { group = "org.springframework.boot", name = "spring-boot-devtools" }

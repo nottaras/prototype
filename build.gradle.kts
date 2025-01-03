@@ -30,8 +30,11 @@ dependencies {
     implementation(libs.mapstruct)
     implementation(libs.bundles.flyway)
     implementation(libs.micrometer)
+    implementation(variantOf(libs.querydsl.jpa) { classifier("jakarta") })
 
     annotationProcessor(libs.mapstruct.processor)
+    annotationProcessor(variantOf(libs.querydsl.apt) { classifier("jakarta") })
+    annotationProcessor(libs.jakarta.persisence.api)
 
     developmentOnly(libs.bundles.springboot.development)
 

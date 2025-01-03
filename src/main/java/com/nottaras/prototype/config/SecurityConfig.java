@@ -25,10 +25,10 @@ public class SecurityConfig {
             .csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(
                 authConfig -> authConfig.requestMatchers(
-                        "/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**", "/actuator/**"
+                        "/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**", "/actuator/**",
+                        "/actuator/**"
                     ).permitAll()
-                    .anyRequest().authenticated()
-            )
+                    .anyRequest().authenticated())
             .oauth2ResourceServer(oauth2 -> oauth2
                 .jwt(jwtConfig -> jwtConfig.jwtAuthenticationConverter(customJwtAuthConverter)))
             .sessionManagement(session -> session
