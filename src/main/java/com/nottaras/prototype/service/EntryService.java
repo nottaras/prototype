@@ -1,15 +1,16 @@
 package com.nottaras.prototype.service;
 
 import com.nottaras.prototype.dto.EntryDto;
+import com.nottaras.prototype.dto.FilterEntryDto;
 import com.nottaras.prototype.dto.UpsertEntryDto;
 import com.nottaras.prototype.mapper.EntryMapper;
 import com.nottaras.prototype.repository.EntryRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -27,10 +28,9 @@ public class EntryService {
     }
 
     @Transactional(readOnly = true)
-    public List<EntryDto> getEntries(UUID userId) {
-        return entryRepository.findAllByUserId(userId).stream()
-            .map(entryMapper::map)
-            .toList();
+    public Page<EntryDto> findEntries(UUID userId, FilterEntryDto filterDto) {
+        return entryRepository.findByFilter(userId, filterDto)
+            .map(entryMapper::map);
     }
 
     @Transactional(readOnly = true)

@@ -2,9 +2,12 @@ package com.nottaras.prototype.controller;
 
 import com.nottaras.prototype.auth.HasRoleUser;
 import com.nottaras.prototype.dto.EntryDto;
+import com.nottaras.prototype.dto.FilterEntryDto;
 import com.nottaras.prototype.dto.UpsertEntryDto;
 import com.nottaras.prototype.service.EntryService;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -36,8 +38,9 @@ public class EntryController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<EntryDto> getAllEntries(@AuthenticationPrincipal UUID userId) {
-        return entryService.getEntries(userId);
+    public Page<EntryDto> findEntries(@AuthenticationPrincipal UUID userId,
+                                      @ParameterObject FilterEntryDto filterDto) {
+        return entryService.findEntries(userId, filterDto);
     }
 
     @GetMapping("/{id}")
